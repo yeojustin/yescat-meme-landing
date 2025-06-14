@@ -67,22 +67,12 @@
         }
     </style>
 </head>
-<body class="p-4 sm:p-8">
-    <div class="container flex flex-col lg:flex-row p-6 lg:p-8 space-y-8 lg:space-y-0 lg:space-x-8">
-        <!-- Left Column: Chatbot -->
-        <div class="w-full lg:w-1/2 flex flex-col p-6 bg-blue-50 rounded-lg shadow-inner border border-gray-200 min-h-[400px] lg:min-h-[600px]">
-            <h2 class="text-3xl font-bold text-center text-black-800 mb-6 pb-3">✨ find the easter egg +10k aura ✨</h2>
-            <div id="chatMessages" class="chat-messages flex flex-col space-y-4 p-4 mb-4 bg-white rounded-md shadow-md border border-gray-100 flex-grow">
-                <!-- Initial bot message -->
-                <div class="bot-message self-start">yes</div>
-            </div>
-            <div class="flex mt-auto">
-                <input type="text" id="chatInput" placeholder="Type your message..." class="flex-grow p-3 rounded-l-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-700">
-                <button id="sendButton" class="bg-green-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-r-xl shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Send</button>
-            </div>
-        </div>
 
-        <!-- Right Column: Info and Memes -->
+
+<body class="p-4 sm:p-8">
+
+    <div class="container flex flex-col lg:flex-row p-6 lg:p-8 space-y-8 lg:space-y-0 lg:space-x-8">
+        <!-- Left Column: About Meme (move this first) -->
         <div class="w-full lg:w-1/2 p-6 bg-pink-50 rounded-lg shadow-lg border-gray-100 flex flex-col items-center">
             <div class="flex items-center justify-center mb-6 w-full">
                 <h1 class="text-4xl font-extrabold text-center text-black-800 mr-4">
@@ -115,7 +105,22 @@
             </a>
             <p class="text-sm text-gray-500 mt-2 text-center">(if someone creates a X community, I will update it)</p>
         </div>
+
+        <!-- Right Column: Chatbot (move this second) -->
+        <div class="w-full lg:w-1/2 flex flex-col p-6 bg-blue-50 rounded-lg shadow-lg min-h-[400px] lg:min-h-[600px]">
+            <h2 class="text-3xl font-bold text-center text-black-800 mb-6 pb-3">✨ find the easter egg +10k aura ✨</h2>
+            <div id="chatMessages" class="chat-messages flex flex-col space-y-4 p-4 mb-4 bg-white rounded-md shadow-md border border-gray-100 flex-grow">
+                <!-- Initial bot message -->
+                <div class="bot-message self-start">yes</div>
+            </div>
+            <div class="flex mt-auto">
+                <input type="text" id="chatInput" placeholder="Type your message..." class="flex-grow p-3 rounded-l-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-700">
+                <button id="sendButton" class="bg-green-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-r-xl shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Send</button>
+            </div>
+        </div>
     </div>
+    
+
 
     <script>
         const chatMessages = document.getElementById('chatMessages');
