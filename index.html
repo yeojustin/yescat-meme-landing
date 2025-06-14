@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yes Cat ($yescat) - The Meme Coin that Says YES!</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Patrick Hand (for cutesy font) and Inter (fallback) -->
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Patrick Hand', 'Inter', sans-serif; /* Applied cutesy font */
+            background-color: #f0f4f8; /* Light blue-gray fallback background */
+            background-repeat: repeat; /* Repeat the emoji images to cover the whole background */
+            background-size: 100px 100px; /* Size of each repeating emoji tile */
+            background-attachment: fixed; /* Keep background fixed when scrolling */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: background-image 0.2s ease-in-out; /* Smooth transition for background image change */
+        }
+        .container {
+            max-width: 1200px;
+            width: 95%; /* Fluid width */
+            background-color: #ffffff; /* Make the container opaque so content is readable */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 0.75rem; /* Less rounded: changed from 1.5rem (xl) to 0.75rem (lg) */
+            overflow: hidden; /* Ensure content respects border-radius */
+        }
+        .chatbot-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* Take full height of parent column */
+        }
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+        .user-message {
+            background-color: #e2e8f0; /* Light gray for user */
+            border-radius: 0.75rem; /* Less rounded: changed from 0.75rem (lg) to 0.75rem (lg) */
+            padding: 0.5rem 1rem;
+            max-width: 80%;
+            align-self: flex-end; /* Align to right */
+        }
+        .bot-message {
+            background-color: #bfdbfe; /* Light blue for bot */
+            border-radius: 0.75rem; /* Less rounded: changed from 0.75rem (lg) to 0.75rem (lg) */
+            padding: 0.5rem 1rem;
+            max-width: 80%;
+            align-self: flex-start; /* Align to left */
+        }
+        /* Custom scrollbar for chat messages */
+        .chat-messages::-webkit-scrollbar {
+            width: 8px;
+        }
+        .chat-messages::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1; /* Gray scrollbar */
+            border-radius: 4px;
+        }
+        .chat-messages::-webkit-scrollbar-track {
+            background-color: #f1f5f9; /* Lighter gray track */
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container flex flex-col lg:flex-row p-6 lg:p-8 space-y-8 lg:space-y-0 lg:space-x-8">
+        <!-- Left Column: Chatbot -->
+        <div class="w-full lg:w-1/2 flex flex-col p-6 bg-blue-50 rounded-lg shadow-inner border border-gray-200 min-h-[400px] lg:min-h-[600px]">
+            <h2 class="text-3xl font-bold text-center text-black-800 mb-6 pb-3">✨ find the easter egg +10k aura ✨</h2>
+            <div id="chatMessages" class="chat-messages flex flex-col space-y-4 p-4 mb-4 bg-white rounded-md shadow-md border border-gray-100 flex-grow">
+                <!-- Initial bot message -->
+                <div class="bot-message self-start">yes</div>
+            </div>
+            <div class="flex mt-auto">
+                <input type="text" id="chatInput" placeholder="Type your message..." class="flex-grow p-3 rounded-l-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-700">
+                <button id="sendButton" class="bg-green-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-r-xl shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Send</button>
+            </div>
+        </div>
+
+        <!-- Right Column: Info and Memes -->
+        <div class="w-full lg:w-1/2 p-6 bg-pink-50 rounded-lg shadow-lg border-gray-100 flex flex-col items-center">
+            <div class="flex items-center justify-center mb-6 w-full">
+                <h1 class="text-4xl font-extrabold text-center text-black-800 mr-4">
+                    $yes
+                </h1>
+                <button id="copyCaButton" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-lg">
+                    Copy CA
+                </button>
+                <span id="copyFeedback" class="ml-3 text-green-700 font-semibold opacity-0 transition-opacity duration-300"></span>
+            </div>
+
+            <!-- GIF -->
+            <div class="w-full max-w-sm rounded-lg overflow-hidden shadow-lg border border-blue-200 mb-8 transform hover:scale-105 transition duration-300 ease-in-out">
+                <img src="images/meme.gif" alt="Nodding Cat GIF" class="w-full h-auto object-cover">
+            </div>
+
+            <!-- About Meme Section -->
+            <section class="mb-8 p-4 w-full text-center">
+                <h2 class="text-2xl font-bold text-gray-700 mb-3">About the Meme</h2>
+                <p class="text-2xl text-gray-800 leading-relaxed">
+                    Yes.
+                </p>
+            </section>
+
+            <!-- X Button with SVG Icon -->
+            <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-gray-800 hover:bg-gray-900 text-white py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 mt-4">
+                <svg class="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M18.901 1.153h3.682l-8.026 9.255 9.771 13.992h-8.293l-6.31-9.103-7.514 9.103h-3.681l8.799-10.052L0 1.153h8.423l5.056 6.549L18.901 1.153zM16.985 20.898h2.09L7.332 3.197H5.064L16.985 20.898z" />
+                </svg>
+            </a>
+            <p class="text-sm text-gray-500 mt-2 text-center">(if someone creates a X community, I will update it)</p>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendButton = document.getElementById('sendButton');
+        const copyCaButton = document.getElementById('copyCaButton');
+        const copyFeedback = document.getElementById('copyFeedback');
+
+        // Define the Contract Address
+        const contractAddress = "0x1234567890abcdef1234567890abcdef12345678"; // REPLACE with your actual CA
+
+        /**
+         * Adds a message to the chat display.
+         * @param {string} message - The text content of the message.
+         * @param {'user' | 'bot'} sender - The sender of the message ('user' or 'bot').
+         */
+        function addMessage(message, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = message;
+            messageDiv.classList.add('p-3', 'rounded-lg', 'max-w-xs', 'break-words'); // Common styling, adjusted rounding
+            if (sender === 'user') {
+                messageDiv.classList.add('bg-blue-100', 'self-end', 'text-gray-800', 'shadow-sm', 'border', 'border-blue-200');
+            } else {
+                messageDiv.classList.add('bg-gray-100', 'self-start', 'text-gray-800', 'shadow-sm', 'border', 'border-gray-200');
+            }
+            chatMessages.appendChild(messageDiv);
+            // Scroll to the bottom to show the latest message
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        /**
+         * Handles sending a message from the user.
+         */
+        function sendMessage() {
+            const userMessage = chatInput.value.trim();
+            if (userMessage === '') {
+                return; // Don't send empty messages
+            }
+
+            addMessage(userMessage, 'user');
+            chatInput.value = ''; // Clear input field
+
+            // Simulate bot typing delay
+            setTimeout(() => {
+                let botResponse = 'yes';
+                // Easter egg: If user types "no cat", bot replies "no"
+                if (userMessage.toLowerCase().includes('no cat')) {
+                    botResponse = 'no';
+                }
+                addMessage(botResponse, 'bot');
+            }, 500); // 0.5 second delay
+        }
+
+        /**
+         * Copies the contract address to the clipboard.
+         */
+        function copyContractAddress() {
+            // Create a temporary input element to copy from
+            const tempInput = document.createElement('input');
+            tempInput.value = contractAddress;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); // For mobile devices
+
+            try {
+                document.execCommand('copy');
+                copyFeedback.textContent = 'Copied!';
+                copyFeedback.style.opacity = 1;
+                setTimeout(() => {
+                    copyFeedback.style.opacity = 0;
+                }, 1500); // Hide after 1.5 seconds
+            } catch (err) {
+                console.error('Failed to copy text:', err);
+                copyFeedback.textContent = 'Failed to copy!';
+                copyFeedback.style.opacity = 1;
+                copyFeedback.style.color = 'red';
+                setTimeout(() => {
+                    copyFeedback.style.opacity = 0;
+                    copyFeedback.style.color = 'green-700'; // Reset color
+                }, 2000);
+            } finally {
+                document.body.removeChild(tempInput); // Clean up the temporary input
+            }
+        }
+
+
+        // Event listener for the send button
+        sendButton.addEventListener('click', sendMessage);
+
+        // Event listener for the Enter key in the input field
+        chatInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Event listener for the Copy CA button
+        copyCaButton.addEventListener('click', copyContractAddress);
+
+
+        // --- Background Emoji Animation ---
+        const emojis = ['😺', '😸', '😻', '😽', '🙀', '😿', '😾'];
+        const emojiDataURLs = [];
+
+        /**
+         * Converts an emoji character into a Data URL for use as a background image.
+         * Draws the emoji onto a transparent canvas.
+         * @param {string} emoji - The emoji character (e.g., '😺').
+         * @returns {string} The Data URL of the emoji image.
+         */
+        function generateEmojiDataURL(emoji) {
+            const canvas = document.createElement('canvas');
+            const size = 100; // Define size for clarity and performance
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            ctx.font = `${size * 0.8}px 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.clearRect(0, 0, size, size); // Ensure transparent background
+            ctx.fillText(emoji, size / 2, size / 2);
+            return canvas.toDataURL('image/png');
+        }
+
+        // Generate all emoji Data URLs once when the script loads
+        emojis.forEach(emoji => {
+            emojiDataURLs.push(generateEmojiDataURL(emoji));
+        });
+
+        let currentEmojiIndex = 0;
+
+        // Set the initial background emoji
+        if (emojiDataURLs.length > 0) {
+            document.body.style.backgroundImage = `url('${emojiDataURLs[currentEmojiIndex]}')`;
+        }
+
+        // Set up interval to change the background emoji
+        setInterval(() => {
+            currentEmojiIndex = (currentEmojiIndex + 1) % emojiDataURLs.length;
+            document.body.style.backgroundImage = `url('${emojiDataURLs[currentEmojiIndex]}')`;
+        }, 800); // Change emoji every 0.8 seconds
+    </script>
+</body>
+</html>
