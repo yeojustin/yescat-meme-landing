@@ -40,7 +40,7 @@
             flex-grow: 1;
             overflow-y: auto;
             min-height: 0;
-            max-height: 600px; /* or any value you prefer */
+            max-height: 500px; /* can be changed */
             scroll-behavior: smooth;
         }
         .user-message {
@@ -121,6 +121,10 @@
                 <button id="sendButton" class="bg-green-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-r-xl shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Send</button>
             </div>
         </div>
+    </div>
+
+    <div class="w-full text-center mt-6">
+        <span id="visitCount" class="text-gray-600 text-base font-semibold">Loading visits...</span>
     </div>
     
     <script>
